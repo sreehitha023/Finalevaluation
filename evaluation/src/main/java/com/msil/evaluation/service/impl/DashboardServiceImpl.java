@@ -310,33 +310,6 @@ public class DashboardServiceImpl implements DashboardService
         orderRepository.save(order);
     }
     /* * Retrieves the portfolio of the current user.*/
-//    public List<PortfolioItemDto> getPortfolio() {
-//        log.info("Returned by Dashboard service method : getPortfolio");
-//
-//        // Create an empty list to store portfolio items
-//        List<PortfolioItemDto> portfolio = new ArrayList<>();
-//
-//        // Gets details of the current user
-//        getCurrentUserDetails();
-//
-//        // list of sell orders from the db for the current user
-//        List<Order> sellOrders = orderRepository.findByUserOrdersIdAndOrderTypeAndQuantityGreaterThanAndStatus(getCurrentUserDetails(), StringConstants.Sell, 0, StringConstants.PENDING);
-//
-//        //list of buy orders from the db for the current user
-//        List<Order> buyOrders = orderRepository.findByUserOrdersIdAndOrderTypeAndQuantityGreaterThanAndStatus(getCurrentUserDetails(), StringConstants.Buy, 0, StringConstants.PENDING);
-//
-//        // Loop through each sell order in the list of sell orders.
-//        for (Order sellOrder : sellOrders) {
-//            // For each sell order, create a PortfolioItemDto, which represents an item in the user's portfolio which stores all the data
-//            PortfolioItemDto portfolioItem = createPortfolioItem(sellOrder.getStockSymbol(), sellOrder.getStatus(), sellOrder.getQuantity(), sellOrder.getTimestamp());
-//            portfolio.add(portfolioItem);
-//        }
-//        for (Order buyOrder : buyOrders) {
-//            PortfolioItemDto portfolioItem = createPortfolioItem(buyOrder.getStockSymbol(), buyOrder.getStatus(), buyOrder.getQuantity(), buyOrder.getTimestamp());
-//            portfolio.add(portfolioItem);
-//        }
-//        return portfolio;
-//    }
     public List<PortfolioItemDto> getPortfolio() {
         log.info("Returned by Dashboard service method: getPortfolio");
 

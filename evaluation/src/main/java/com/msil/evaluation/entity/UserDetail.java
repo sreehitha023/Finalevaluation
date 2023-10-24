@@ -43,6 +43,4 @@ public class UserDetail {
 
         private LocalDateTime created_Time;
 
-        public UserDetail(long id, String userName, String password, String email, String roles) {
-        }
 }

@@ -19,7 +19,7 @@ public class WatchList {
     private String groupName;
 
 
-    @ElementCollection // Use this annotation for collections of basic types (strings)
+    @ElementCollection // Used to map collections of basic types to db (strings)
     @CollectionTable(
             name = "watchlist_group_symbol",
             joinColumns = @JoinColumn(name = "watchlist_group_id")

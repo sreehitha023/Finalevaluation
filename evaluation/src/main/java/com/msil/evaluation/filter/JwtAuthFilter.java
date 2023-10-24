@@ -18,7 +18,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 @Component
-public class JwtAuthFilter extends OncePerRequestFilter {
+public class JwtAuthFilter extends OncePerRequestFilter /** creating filters that are executed once per HTTP request.*/
+{
     @Autowired
     JwtService jwtService;
 
@@ -30,9 +31,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull FilterChain filterChain) throws ServletException, IOException {
        try{
-           String authHeader = request.getHeader("Authorization");
-           String token = null;
-           String username = null;
+           String authHeader = request.getHeader("Authorization");//retrieves the "Authorization" header from the incoming HTTP request, where JWT tokens are often included
+           String token = null;//variable to store JWT token extracted from the header
+           String username = null;//variable to store username extracted from token
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
             username = jwtService.extractUsername(token);

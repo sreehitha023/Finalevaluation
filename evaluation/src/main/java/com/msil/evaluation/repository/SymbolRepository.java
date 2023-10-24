@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SymbolRepository extends JpaRepository<Symbols,Long> {
-    @Query(QueryConstants.Symbol_Details_Query)
-    Symbols findSymbolByPartialNameIgnoreCase(@Param("symbolName") String symbolName);
     boolean existsBySymbol(String symbol);
 
 }

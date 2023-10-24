@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 
-@ControllerAdvice
+@ControllerAdvice //class is intended to provide global exception handling for the application and It allows you to centralize your exception handling logic
 @Log4j2
-public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
+public class CustomExceptionHandler extends ResponseEntityExceptionHandler /**handling exceptions and returning appropriate responses.*/
+{
 
-  @ExceptionHandler(UserNotFoundException.class)
+  @ExceptionHandler(UserNotFoundException.class) // specifies that the method should handle exceptions of type UserNotFoundException
     public ResponseEntity<ErrorResponse> handleUserNotFoundException(UserNotFoundException ex)
   {
       log.info(StringConstants.Exception+"handleUserNotFoundException");

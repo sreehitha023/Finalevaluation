@@ -23,7 +23,8 @@ import java.util.stream.Collectors;
 
 @Log4j2
 @Service
-@Transactional
+@Transactional//specify that certain methods should be executed within a database transaction.
+// helps to ensure that these operations are executed atomically, they are either all completed successfully or rolled back if an error occurs
 public class DashboardServiceImpl implements DashboardService
 {
     @Autowired
@@ -163,7 +164,6 @@ public class DashboardServiceImpl implements DashboardService
     private WatchList checkWatchListGroupExists(UserDetail userDetail, Long groupId) {
         // gets the list of watchlist groups of particular user.
         List<WatchList> watchlists = userDetail.getWatchlists();
-
         // stream is used to filter the watchlist groups and find the one with matching ID if matched return watchlist group
         WatchList watchlist = watchlists.stream()
                 .filter(group -> Objects.equals(group.getId(), groupId))
@@ -213,7 +213,7 @@ public class DashboardServiceImpl implements DashboardService
                 currentUser.getOrders().add(order);
                 orderRepository.save(order);
 
-                return String.format(StringConstants.Add_Order_Success + " with id : " + " " + order.getId() + "by" + " " + currentUser.getUserName());
+                return StringConstants.Add_Order_Success + " with id : " + " " + order.getId() + "by" + " " + currentUser.getUserName();
             } else {
                 // if symbol is not found throw error
                 throw new CustomException(ErrorConstants.Symbol_Not_Found);

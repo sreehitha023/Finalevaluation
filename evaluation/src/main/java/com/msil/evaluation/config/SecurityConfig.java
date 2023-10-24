@@ -20,9 +20,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration
-@EnableWebSecurity
-@EnableMethodSecurity
+@Configuration  // indicating that it contains configuration for the application.
+@EnableWebSecurity // used to configure web-based security.
+@EnableMethodSecurity // enables method-level security , allowing you to secure specific methods or functions with security rules.
 public class SecurityConfig
 {
 

@@ -14,7 +14,7 @@ public class WatchList {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserDetail user;
+    private UserDetail user ;
 
     private String groupName;
 

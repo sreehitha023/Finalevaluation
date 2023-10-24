@@ -39,7 +39,8 @@ public class DashboardServiceImpl implements DashboardService
     TradeRepository tradeRepository;
 
     /* *Retrieves current user info*/
-    public UserDetail getCurrentUserDetails() {
+    public UserDetail getCurrentUserDetails()
+    {
         // Gets the username from the JwtAuthFilter class, which is stored in the userNameMatches.
         String userName = JwtAuthFilter.userNameMatches;
 
@@ -52,7 +53,8 @@ public class DashboardServiceImpl implements DashboardService
 
 
     /* * Adds a new watchlist group for the current user.*/
-    public String addWatchlistGroup(TradeRequest tradeRequest) {
+    public String addWatchlistGroup(TradeRequest tradeRequest)
+    {
         log.info(StringConstants.DashBoard + "addWatchlistGroup");
 
         // Gets the group name from the tradeRequest
@@ -82,7 +84,8 @@ public class DashboardServiceImpl implements DashboardService
     }
 
     /* * Retrieves the watchlist groups for the current user.*/
-    public List<WatchListGroupDto> getWatchlistGroups() {
+    public List<WatchListGroupDto> getWatchlistGroups()
+    {
         log.info(StringConstants.DashBoard + "getWatchListGroups");
 
         // Gets current user's details
@@ -95,7 +98,8 @@ public class DashboardServiceImpl implements DashboardService
 
 
     /* * Converts a list of Watchlist entities to list of WatchListGroupDto objects.*/
-    private List<WatchListGroupDto> convertToWatchlistGroupDtos(List<WatchList> watchLists) {
+    private List<WatchListGroupDto> convertToWatchlistGroupDtos(List<WatchList> watchLists)
+    {
         return watchLists
                 .stream()  // Create a stream of WatchList objects
                 .map(this::convertToWatchListGroupDto)  // Map each WatchList to a WatchListGroupDto using the conversion method

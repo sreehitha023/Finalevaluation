@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 
-@ControllerAdvice //class is intended to provide global exception handling for the application and It allows you to centralize your exception handling logic
+@ControllerAdvice //class is intended to provide global exception handling for the application , and It allows you to centralize your exception handling logic
 @Log4j2
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler /**handling exceptions and returning appropriate responses.*/
 {
@@ -44,7 +44,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler /**ha
       log.info(StringConstants.Exception+"handleArgumentConstraintViolation");
       ErrorResponse errorResponse = new ErrorResponse();
       errorResponse.setErrorName(argumentConstraintViolation.getClass().getSimpleName());
-      errorResponse.setPath("/trading/search");
+      errorResponse.setPath("/search");
       errorResponse.setMessage(argumentConstraintViolation.getMessage());
       errorResponse.setErrorCode(String.valueOf((HttpStatus.NOT_FOUND)));
       log.info(errorResponse);
@@ -57,7 +57,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler /**ha
       log.info(StringConstants.Exception+"handleInvalidPasswordException");
       ErrorResponse errorResponse = new ErrorResponse();
       errorResponse.setErrorName(invalidPasswordException.getClass().getSimpleName());
-      errorResponse.setPath("/trading/register");
+      errorResponse.setPath("/user/register");
       errorResponse.setMessage(invalidPasswordException.getMessage());
       errorResponse.setErrorCode(String.valueOf(HttpStatus.ACCEPTED));
       log.info(errorResponse);

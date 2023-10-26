@@ -1,7 +1,6 @@
 package com.msil.evaluation.entity;
 
 import com.msil.evaluation.constants.ErrorConstants;
-import com.msil.evaluation.constants.StringConstants;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;

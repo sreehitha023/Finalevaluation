@@ -6,6 +6,7 @@ import com.msil.evaluation.service.UserSessionService;
 import lombok.extern.log4j.Log4j2;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,14 +23,14 @@ public class UserSessionController {
     UserSessionService userSessionService;
 
     @PostMapping(PathConstants.User_Login)//create user sessions and provides token
-    public ResponseEntity<ApiResponse<String>> authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+    public ResponseEntity<ApiResponse> authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
         log.info(StringConstants.User_Login_Requested);
-        return ResponseEntity.ok(new ApiResponse<>((StringConstants.User_LoggedIn_Successfully),userSessionService.loginUser(authRequest)));
+        return ResponseEntity.ok(new ApiResponse<>((StringConstants.User_LoggedIn_Successfully),userSessionService.loginUser(authRequest),HttpStatus.OK));
     }
 
     @PostMapping(PathConstants.User_Logout)//user session is invalid
-    public ResponseEntity<StringResponse<String>> userLogout(@RequestBody AuthRequest authRequest) {
+    public ResponseEntity<ResponseDto> userLogout(@RequestBody AuthRequest authRequest) {
         log.info(StringConstants.User_Logout_Requested);
-        return ResponseEntity.ok(new StringResponse<>(userSessionService.logoutUser(authRequest)));
+        return ResponseEntity.ok(new ResponseDto(userSessionService.logoutUser(authRequest), HttpStatus.OK));
     }
 }

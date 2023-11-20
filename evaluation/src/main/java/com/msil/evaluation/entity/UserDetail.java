@@ -1,5 +1,6 @@
 package com.msil.evaluation.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.msil.evaluation.constants.ErrorConstants;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -18,29 +19,35 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDetail {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        @Column(unique = true)
-        @NotBlank(message = ErrorConstants.Username_Blank)
-        private String userName;
-        @NotBlank(message = ErrorConstants.Password_Blank)
-        @Pattern(regexp = ErrorConstants.Password_Pattern, message = ErrorConstants.Password_Constraint)
-        private String password;
-        @Column(unique = true)
-        @Email(message = ErrorConstants.Invalid_Email)
-        private String email;
-        private String roles = "ROLE_USER";
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-        private List<WatchList> watchlists = new ArrayList<>();
+    @Column(unique = true)
+    @NotBlank(message = ErrorConstants.Username_Blank)
+    private String userName;
 
-        @OneToMany(mappedBy = "userOrdersId", cascade = CascadeType.ALL)
-        private List<Order> orders = new ArrayList<>();
+    @NotBlank(message = ErrorConstants.Password_Blank)
+    @Pattern(regexp = ErrorConstants.Password_Pattern, message = ErrorConstants.Password_Constraint)
+    private String password;
 
-        @OneToMany(mappedBy = "userTradeId", cascade = CascadeType.ALL)
-        private List<Trade> trade = new ArrayList<>();
+    @Column(unique = true)
+    @Email(message = ErrorConstants.Invalid_Email)
+    private String email;
 
-        private LocalDateTime created_Time;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<WatchList> watchlists = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "userOrdersId", cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "userTradeId", cascade = CascadeType.ALL)
+    private List<Trade> trade = new ArrayList<>();
+
+    @JsonIgnore
+    private LocalDateTime created_Time;
 
 }

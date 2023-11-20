@@ -1,7 +1,7 @@
 package com.msil.evaluation.constants;
 
 public class StringConstants {
-    public static final String Logged_Out_Successfully = "User Logged out Successfully : ";
+    public static final String Logged_Out_Successfully = "User Logged out Successfully ";
     public static final String Success = "SUCCESS";
     public static final String User_register_success = " Registered successfully ";
     public static final String Request_To_Add_User = "Received request to add new user";
@@ -30,7 +30,6 @@ public class StringConstants {
     public static final String All_Symbols_Request = "Received request for retrieving symbols";
     public static final String DashBoard = "Returned by Dashboard service method :";
     public static final String Quote ="Returned by Quote service method :";
-    public static final String UserRegistryService = "Returned by UserRegistration service method :";
     public static final String UserSession = "Returned by UserSession service method :";
     public static final String Exception = "Returning custom-exception handler method:";
     public static final String Buy = "BUY";

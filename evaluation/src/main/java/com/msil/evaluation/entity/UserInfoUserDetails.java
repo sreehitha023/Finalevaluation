@@ -14,14 +14,11 @@ public class UserInfoUserDetails implements UserDetails {
     private final String  username;
     private final String password;
 
-    private final List<GrantedAuthority> authorities;
 
     public UserInfoUserDetails(UserDetail userDetail) {            //set userDetails using username
         username=userDetail.getUserName();
         password=userDetail.getPassword();
-        authorities= Arrays.stream(userDetail.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+
     }
     public UserInfoUserDetails(UserDetail userDetail, boolean useEmailAsUsername) {     //set userDetails using email as username
         if (useEmailAsUsername) {
@@ -30,14 +27,12 @@ public class UserInfoUserDetails implements UserDetails {
             this.username = userDetail.getUserName();
         }
         this.password = userDetail.getPassword();
-        this.authorities = Arrays.stream(userDetail.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return null;
     }
     @Override
     public String getPassword() {

@@ -6,9 +6,13 @@ import com.msil.evaluation.exceptionHandler.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @ControllerAdvice //class is intended to provide global exception handling for the application , and It allows you to centralize your exception handling logic
@@ -44,7 +48,6 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler /**ha
       log.info(StringConstants.Exception+"handleArgumentConstraintViolation");
       ErrorResponse errorResponse = new ErrorResponse();
       errorResponse.setErrorName(argumentConstraintViolation.getClass().getSimpleName());
-      errorResponse.setPath("/search");
       errorResponse.setMessage(argumentConstraintViolation.getMessage());
       errorResponse.setErrorCode(String.valueOf((HttpStatus.NOT_FOUND)));
       log.info(errorResponse);
@@ -57,7 +60,6 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler /**ha
       log.info(StringConstants.Exception+"handleInvalidPasswordException");
       ErrorResponse errorResponse = new ErrorResponse();
       errorResponse.setErrorName(invalidPasswordException.getClass().getSimpleName());
-      errorResponse.setPath("/user/register");
       errorResponse.setMessage(invalidPasswordException.getMessage());
       errorResponse.setErrorCode(String.valueOf(HttpStatus.ACCEPTED));
       log.info(errorResponse);
